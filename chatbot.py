@@ -12,17 +12,34 @@ if not api_key:
     exit(1)
 
 client=genai.Client(api_key=api_key)
+
 config = types.GenerateContentConfig(
     system_instruction="""You are a strict but helpful coding mentor.
 You only answer questions about Python and AI engineering.
 Keep answers under 100 words. Always end with one 
 follow-up question to push the student deeper."""
 )
-chat = client.chats.create(model="gemini-2.5-flash", config=config)
+
+conversation_history=[]
+
+# chat = client.chats.create(model="gemini-2.5-flash", config=config)
+
 print("AI Chatbot ready ! Type 'quit' to exit.\n")
 while True:
     user_input=input("You : ")
     if user_input.lower()=="quit":
         break
-    response=chat.send_message(user_input)
+    if user_input.lower()=="save":
+        with open("conversation.txt","w") as f:
+            f.write("\n".join(conversation_history))
+        print("Conversation saved to conversation.txt\n")
+        continue
+    conversation_history.append(f"You : {user_input}")
+    full_context="\n".join(conversation_history)
+    response=client.models.generate_content(
+        model="gemini-2.5-flash",
+        config=config,
+        contents=full_context
+    )
+    conversation_history.append(f"AI : {response.text}")
     print(f"AI : {response.text}\n")
