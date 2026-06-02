@@ -32,14 +32,17 @@ while True:
     if user_input.lower()=="save":
         with open("conversation.txt","w") as f:
             f.write("\n".join(conversation_history))
+            for turn in conversation_history:
+                role="You" if turn["role"]=="user" else "AI"
+                f.write(f"{role}: {turn['parts']}\n")
         print("Conversation saved to conversation.txt\n")
         continue
-    conversation_history.append(f"You : {user_input}")
-    full_context="\n".join(conversation_history)
+    conversation_history.append({"role": "user", "parts": [user_input]})
+
     response=client.models.generate_content(
         model="gemini-2.5-flash",
         config=config,
-        contents=full_context
+        contents=conversation_history
     )
-    conversation_history.append(f"AI : {response.text}")
+    conversation_history.append({"role": "model", "parts": [response.text]})
     print(f"AI : {response.text}\n")

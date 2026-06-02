@@ -1,0 +1,8 @@
+You: start the interview
+Interviewer: Hello and welcome! I'm excited to have you here today. This interview will focus on your technical skills in AI engineering, covering a range of topics from programming fundamentals to more advanced AI concepts and system design.
+
+We'll go through about 5 questions, increasing in difficulty, and I'll give you feedback after each one.
+
+Let's start with a warm-up question to get us going.
+
+**Question 1:** In Python, can you explain the difference between a list and a tuple? When would you choose one over the other?

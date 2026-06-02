@@ -66,6 +66,11 @@ conversation_history.append(
 while True:
     user_input=input("You:")
     if user_input.lower()=="quit":
+        with open("interview_results.txt","w") as f:
+            for turn in conversation_history:
+                role="You" if turn.role=="user" else "Interviewer"
+                f.write(f"{role}: {turn.parts[0].text}\n")
+        print("Interview results saved to interview_results.txt\n")
         break
     if user_input.lower()=="score":
         user_input="Please give me feedback and a score on my performance so far."
