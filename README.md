@@ -52,4 +52,29 @@ Day 1: CLI script
 Day 2: Web app  
 Day 3: Backend API with 4 endpoints
 
-#FastAPI #AIEngineering #Python #BuildInPublic
+###Day 10 — I found my resume gaps and closed 3 of them today.
+
+My AI resume analyzer told me I was missing:
+TypeScript, Docker, and CI/CD.
+
+So I built all three in one day.
+
+TypeScript: rewrote my Python data models with types.
+Found out immediately why companies use it —
+VS Code caught 4 errors before I ran a single line.
+
+Docker: containerized my FastAPI resume analyzer.
+One command builds it. One command runs it.
+Same everywhere. No more "works on my machine."
+
+CI/CD: GitHub Actions pipeline that triggers on every push.
+3 jobs: code quality check → Docker build → Python tests.
+All green. Screenshot in comments.
+
+My resume analyzer score went from X to Y after adding these.
+
+That is the feedback loop I have built:
+Build → Analyze → Close gaps → Repeat.
+
+Day 10. Still going.
+![CI](https://github.com/rashmi-reddie/ai-engineer-journey/actions/workflows/ci.yml/badge.svg)
