@@ -141,7 +141,8 @@ HTML = """
 
 <script>
     // 1. Establish the persistent WebSocket connection to your FastAPI backend
-    const ws = new WebSocket("ws://localhost:8003/ws");
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+const ws = new WebSocket(`${protocol}//${window.location.host}/ws`);
     
     const messagesBox = document.getElementById('messages');
     const messageInput = document.getElementById('messageText');
